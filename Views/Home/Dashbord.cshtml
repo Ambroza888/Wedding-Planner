@@ -1,0 +1,50 @@
+
+  <div class="row">
+      <h1 class="col-10">Wellcome to the Wedding Planner</h1>
+      <a class ="col" href="/clear">LOG OUT</a>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Wedding</th>
+            <th scope="col">Date</th>
+            <th scope="col">Guest</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach(Wedding i in @ViewBag.all_weddings)
+          {
+          <tr>
+            <td><a href="/WeddingINFO/@i.WeddingId">@i.Groom and @i.Bride</a></td>
+            <td>@i.Date.ToString("MMM dd yyyy")</td>
+            <td>@i.Rsvps.Count</td>
+            @if(@ViewBag.oneUser.UserId == i.UserId)
+            {
+            <td><a href="/delete/@i.WeddingId">Delete</a></td>
+            }
+            else
+            {
+              @if(i.Rsvps.Any(q=>q.UserId == @ViewBag.oneUser.UserId))
+              {
+                <td><a href="/exitWedding/@i.WeddingId">Un-RSVP</a></td>
+              }
+              else
+              {
+                <td><a href="/join/@i.WeddingId">RSVP</a></td>
+              }
+            } 
+              
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col text-right">
+    <button><a href="/addWedding" class="text-dark">New Wedding</a></button>
+    </div>
+  </div>

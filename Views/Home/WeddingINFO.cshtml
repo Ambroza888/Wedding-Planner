@@ -1,0 +1,25 @@
+  <div class="row">
+      <h1 class="col-8">@ViewBag.onewed.Groom and @ViewBag.onewed.Bride Wedding</h1>
+      <a class ="col" href="/Dashbord">Dashboard</a>
+      <a class ="col" href="/clear">LOG OUT</a>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h6>Date: @ViewBag.onewed.Date.ToString("MMM dd yyyy")</h6>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      @if(@ViewBag.onewed.Rsvps.Count > 0)
+      {
+        <h4>Guests:</h4>
+        <ul>
+        @foreach(Rsvp i in @ViewBag.oneWed.Rsvps)
+        {
+          <li>@i.User.FirstName @i.User.LastName</li>
+        }
+        </ul>
+
+      }
+    </div>
+  </div>
